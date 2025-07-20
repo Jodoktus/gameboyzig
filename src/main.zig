@@ -30,8 +30,25 @@ pub fn main() !void {
         }
         try list.append(&bits);
     }
-    try stdout.writeAll(&list);
+
     try stdout.writeByte('\n');
+    var first256: [256][]U1 = undefined; //test for the tertris.gb
+    //later will be changed to check for every cartrige
+    for (0..256) |i| {
+        first256[i] = list.items[i];
+    }
+    var header: [80][]U1 = undefined; //idk what to do with it yet
+    for (256..336) |i| {
+        header[i - 256] = list.items[i];
+    }
+    const len = list.items.len;
+    //because that works for some reason but not in the for statement
+    var code: [32432][]U1 = undefined;
+    for (336..len) |i| {
+        code[i - 336] = list.items[i];
+    }
+
     defer list.deinit(); // to get rit of the bits of tertis.gb
     // dont really know if i have to place it here or right after the list
 }
+//Todo turn the bits into asm code with the op codes of the gameboy
