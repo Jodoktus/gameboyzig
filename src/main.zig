@@ -88,8 +88,27 @@ pub fn opcodes_to_table() !void() {
     opcode_table[7 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD B,A" };
     opcode_table[8 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD C,B" };
     opcode_table[9 + 64] = commands{ .cycles = 1, .lenght = 0, .operation = "LD C,C" };
-    opcode_table[10 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LC C,D" };
-    opcode_table[11 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LC C,E" };
+    opcode_table[10 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD C,D" };
+    opcode_table[11 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD C,E" };
+    opcode_table[12 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD C,H" };
+    opcode_table[13 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD C,L" };
+    opcode_table[14 + 64] = commands{ .cycles = 2, .lenght = 1, .operation = "LD C,(HL)" };
+    opcode_table[15 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD C,A" };
+    //fiveth row
+    opcode_table[0 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,B" };
+    opcode_table[1 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,C" };
+    opcode_table[2 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,D" };
+    opcode_table[3 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,E" };
+    opcode_table[4 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,H" };
+    opcode_table[5 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,L" };
+    opcode_table[6 + 80] = commands{ .cycles = 2, .lenght = 1, .operation = "LD D,(HL)" };
+    opcode_table[7 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,A" };
+    opcode_table[8 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD E,B" };
+    opcode_table[9 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD E,C" };
+    opcode_table[10 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD E,D" };
+    opcode_table[11 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,D" };
+    opcode_table[12 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD E,H" };
+    opcode_table[13 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD E,L" };
 }
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
