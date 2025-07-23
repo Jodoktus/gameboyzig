@@ -369,7 +369,7 @@ pub fn opcodes_to_table() !void() {
     //fifthed row
     opcode_table[0 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,B" };
     opcode_table[1 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,C" };
-    opcode_table[2 + 80+ 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,D" };
+    opcode_table[2 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,D" };
     opcode_table[3 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,E" };
     opcode_table[4 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,H" };
     opcode_table[5 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,L" };
@@ -402,7 +402,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[15 + 96 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 5,A" };
     //seventh row
     opcode_table[0 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 6,B" };
-    opcode_table[1 + 112+ 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 6,C" };
+    opcode_table[1 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 6,C" };
     opcode_table[2 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 6,D" };
     opcode_table[3 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 6,E" };
     opcode_table[4 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 6,H" };
@@ -417,7 +417,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 7,L" };
     opcode_table[14 + 112 + 256] = commands{ .cycles = 3, .lenght = 2, .operation = "BIT 7,(HL)" };
     opcode_table[15 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 7,A" };
-    //eight row 
+    //eight row
 }
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
