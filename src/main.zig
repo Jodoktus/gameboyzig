@@ -8,7 +8,7 @@ const commands = struct {
     lenght: u8,
     operation: []const u8,
 };
-var opcode_table: [256]commands = undefined;
+var opcode_table: [512]commands = undefined;
 pub fn opcodes_to_table() !void() {
     opcode_table[0] = commands{ .cycles = 1, .lenght = 1, .operation = "NOP" };
     opcode_table[1] = commands{ .cycles = 3, .lenght = 3, .operation = "LD BC,u16" };
@@ -281,6 +281,23 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 240] = commands{ .cycles = 0, .lenght = 0, .operation = "" };
     opcode_table[14 + 240] = commands{ .cycles = 2, .lenght = 2, .operation = "CP A,u8" };
     opcode_table[15 + 240] = commands{ .cycles = 4, .lenght = 1, .operation = "RST 38h" };
+    //zeroth row of second table
+    opcode_table[0 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC B" };
+    opcode_table[1 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC C" };
+    opcode_table[2 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC D" };
+    opcode_table[3 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC E" };
+    opcode_table[4 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC H" };
+    opcode_table[5 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC L" };
+    opcode_table[6 + 0 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RLC (HL)" };
+    opcode_table[7 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC A" };
+    opcode_table[8 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RRC B" };
+    opcode_table[9 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RRC C" };
+    opcode_table[10 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RRC D" };
+    opcode_table[11 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RRC E" };
+    opcode_table[12 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RRC H" };
+    opcode_table[13 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RRC L" };
+    opcode_table[14 + 0 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RRC (HL)" };
+    opcode_table[15 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RRC A" };
 }
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
