@@ -9,6 +9,7 @@ const commands = struct {
     operation: []const u8,
 };
 var opcode_table: [512]commands = undefined;
+// should i add the +0+0 in the opcode tables or is it to much
 pub fn opcodes_to_table() !void() {
     opcode_table[0] = commands{ .cycles = 1, .lenght = 1, .operation = "NOP" };
     opcode_table[1] = commands{ .cycles = 3, .lenght = 3, .operation = "LD BC,u16" };
