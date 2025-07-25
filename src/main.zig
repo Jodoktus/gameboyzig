@@ -556,6 +556,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[14 + 240 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SET 7,(HL)" };
     opcode_table[15 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 7,A" };
 }
+const stdout = std.io.getStdOut().writer();
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
 
@@ -565,48 +566,54 @@ pub fn main() !void {
     const file_size = try file.getEndPos();
     const buffer = try allocator.alloc(u8, file_size);
     defer allocator.free(buffer);
-    var list = std.ArrayList([]U1).init(allocator); //i have to make it dynamic because
+    var list = std.ArrayList([]u8).init(allocator); //i have to make it dynamic because
     //idk how big it will get because of diffrent .gb file sizes
     //Todo have to add a system to check how big a file is from the info at the start of the file
 
     _ = try file.readAll(buffer);
 
-    const stdout = std.io.getStdOut().writer();
     const mask: u8 = 0b1000_0000;
     for (buffer) |byte| {
-        var bits: [8]U1 = undefined;
+        var bits: [8]u8 = undefined;
 
         for (0..8) |i| {
             const u8i: U3 = @truncate(i); // truncate to do stuff with mask to 3 bits
-            bits[i] = if ((byte & (mask >> @as(U3, u8i))) != 0) @as(U1, 1) else @as(U1, 0);
+            bits[i] = if ((byte & (mask >> @as(U3, u8i))) != 0) @as(u8, 1) else @as(u8, 0);
         }
         try list.append(&bits);
     }
 
     try stdout.writeByte('\n');
-    var first256: [256][]U1 = undefined; //test for the tertris.gb
+    var first256: [256][]u8 = undefined; //test for the tertris.gb
     //later will be changed to check for every cartrige
     for (0..256) |i| {
         first256[i] = list.items[i];
     }
-    var header: [80][]U1 = undefined; //idk what to do with it yet
+    var header: [80][]u8 = undefined; //idk what to do with it yet
     for (256..336) |i| {
         header[i - 256] = list.items[i];
     }
     const len = list.items.len;
     //because that works for some reason but not in the for statement
-    var code: [32432][]U1 = undefined;
+    var code: [32432][]u8 = undefined;
     for (336..len) |i| {
         code[i - 336] = list.items[i];
     }
-
+    for (0..len) |i| {
+        const item: u8 = bin_into_int(list.items[i]);
+        try stdout.print("{}", .{item});
+    }
+    //for (0..len) |i| {
+    //    try stdout.print("{}", .{bin_into_int(list.items[i])});
+    //}
     defer list.deinit(); // to get rit of the bits of tertis.gb
     // dont really know if i have to place it here or right after the list
 }
-pub fn bin_into_int(x: [8]U1) u8 {
+pub fn bin_into_int(x: []u8) u8 {
     var a: u8 = 0;
     for (x, 0..) |j, i| {
-        a += @as(u8, j) * math.pow(u8, 2, i);
+        std.debug.print("{}", .{j});
+        a += j * math.pow(u8, 2, @truncate(i));
     }
     return a;
 }
