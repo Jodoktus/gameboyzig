@@ -578,7 +578,8 @@ pub fn main() !void {
 
         for (0..8) |i| {
             const u8i: U3 = @truncate(i); // truncate to do stuff with mask to 3 bits
-            bits[i] = if ((byte & (mask >> @as(U3, u8i))) != 0) @as(u8, 1) else @as(u8, 0);
+            bits[i] = if ((byte & (mask >> @as(U3, u8i))) != 0) 1 else 0;
+            try stdout.print("{}", .{bits[i]});
         }
         try list.append(&bits);
     }
@@ -599,13 +600,13 @@ pub fn main() !void {
     for (336..len) |i| {
         code[i - 336] = list.items[i];
     }
-    for (0..len) |i| {
-        const item: u8 = bin_into_int(list.items[i]);
-        try stdout.print("{}", .{item});
-    }
     //for (0..len) |i| {
-    //    try stdout.print("{}", .{bin_into_int(list.items[i])});
+    //   const item: u8 = bin_into_int(list.items[i]);
+    // try stdout.print("{}", .{item});
     //}
+    for (0..len) |i| {
+        try stdout.print("{}", .{collector(list.items[i])});
+    }
     defer list.deinit(); // to get rit of the bits of tertis.gb
     // dont really know if i have to place it here or right after the list
 }
@@ -615,6 +616,14 @@ pub fn bin_into_int(x: []u8) u8 {
         std.debug.print("{}", .{j});
         a += j * math.pow(u8, 2, @truncate(i));
     }
+    return a;
+}
+pub fn inttostring(x: u8) []const u8 {
+    var buffer: [8]u8 = undefined;
+    return std.fmt.formatInt(x, 10, .lower, &buffer);
+}
+pub fn collector(x: []u8) []const u8 {
+    const a: []const u8 = inttostring(x[0]) ++ inttostring(x[1]) ++ inttostring(x[2]) ++ inttostring(x[3]) ++ inttostring(x[4]) ++ inttostring(x[5]) ++ inttostring(x[6]) ++ inttostring(x[7]);
     return a;
 }
 //Todo turn the bits into asm code with the op codes of the gameboy
