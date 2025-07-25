@@ -11,6 +11,7 @@ const commands = struct {
 var opcode_table: [512]commands = undefined;
 // should i add the +0+0 in the opcode tables or is it to much
 pub fn opcodes_to_table() !void() {
+    //0th row of 0th table
     opcode_table[0] = commands{ .cycles = 1, .lenght = 1, .operation = "NOP" };
     opcode_table[1] = commands{ .cycles = 3, .lenght = 3, .operation = "LD BC,u16" };
     opcode_table[2] = commands{ .cycles = 2, .lenght = 1, .operation = "LD (BC),A" };
@@ -27,7 +28,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13] = commands{ .cycles = 1, .lenght = 1, .operation = "DEC C" };
     opcode_table[14] = commands{ .cycles = 2, .lenght = 2, .operation = "LD C,u8" };
     opcode_table[15] = commands{ .cycles = 1, .lenght = 1, .operation = "RRCA" };
-    //first row
+    //1st row
     opcode_table[0 + 16] = commands{ .cycles = 1, .lenght = 1, .operation = "STOP" };
     opcode_table[1 + 16] = commands{ .cycles = 3, .lenght = 3, .operation = "LD DE,u16" };
     opcode_table[2 + 16] = commands{ .cycles = 2, .lenght = 1, .operation = "LD (DE),A" };
@@ -44,7 +45,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 16] = commands{ .cycles = 1, .lenght = 1, .operation = "DEC L" };
     opcode_table[14 + 16] = commands{ .cycles = 2, .lenght = 2, .operation = "LD E,u8" };
     opcode_table[15 + 16] = commands{ .cycles = 1, .lenght = 1, .operation = "RRA" };
-    //second row
+    //2nd row
     opcode_table[0 + 32] = commands{ .cycles = 2, .lenght = 2, .operation = "JR NZ,i8" };
     opcode_table[1 + 32] = commands{ .cycles = 3, .lenght = 3, .operation = "LD HL,u16" };
     opcode_table[2 + 32] = commands{ .cycles = 2, .lenght = 1, .operation = "LD (HL+),A" };
@@ -61,7 +62,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 32] = commands{ .cycles = 1, .lenght = 1, .operation = "DEC L" };
     opcode_table[14 + 32] = commands{ .cycles = 2, .lenght = 2, .operation = "LD E,u8" };
     opcode_table[15 + 32] = commands{ .cycles = 1, .lenght = 1, .operation = "CPL" };
-    //third row
+    //3rd row
     opcode_table[0 + 48] = commands{ .cycles = 2, .lenght = 2, .operation = "JR NC,i8" };
     opcode_table[1 + 48] = commands{ .cycles = 3, .lenght = 3, .operation = "LD SP,u16" };
     opcode_table[2 + 48] = commands{ .cycles = 2, .lenght = 1, .operation = "LD (HL-),A" };
@@ -78,7 +79,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 48] = commands{ .cycles = 1, .lenght = 1, .operation = "DEC A" };
     opcode_table[14 + 48] = commands{ .cycles = 2, .lenght = 2, .operation = "LD A,u8" };
     opcode_table[15 + 48] = commands{ .cycles = 1, .lenght = 1, .operation = "CCF" };
-    //fourth row
+    //4th row
     opcode_table[0 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD B,B" };
     opcode_table[1 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD B,C" };
     opcode_table[2 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD B,D" };
@@ -95,7 +96,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD C,L" };
     opcode_table[14 + 64] = commands{ .cycles = 2, .lenght = 1, .operation = "LD C,(HL)" };
     opcode_table[15 + 64] = commands{ .cycles = 1, .lenght = 1, .operation = "LD C,A" };
-    //fiveth row
+    //5th row
     opcode_table[0 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,B" };
     opcode_table[1 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,C" };
     opcode_table[2 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD D,D" };
@@ -112,7 +113,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD E,L" };
     opcode_table[14 + 80] = commands{ .cycles = 2, .lenght = 1, .operation = "LD E,(HL)" };
     opcode_table[15 + 80] = commands{ .cycles = 1, .lenght = 1, .operation = "LD C,A" };
-    //sixeth row
+    //6th row
     opcode_table[0 + 96] = commands{ .cycles = 1, .lenght = 1, .operation = "LD H,B" };
     opcode_table[1 + 96] = commands{ .cycles = 1, .lenght = 1, .operation = "LD H,C" };
     opcode_table[2 + 96] = commands{ .cycles = 1, .lenght = 1, .operation = "LD H,D" };
@@ -129,7 +130,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 96] = commands{ .cycles = 1, .lenght = 1, .operation = "LD L,L" };
     opcode_table[14 + 96] = commands{ .cycles = 2, .lenght = 1, .operation = "LD L,(HL)" };
     opcode_table[15 + 96] = commands{ .cycles = 1, .lenght = 1, .operation = "LD L,A" };
-    //seventh row
+    //7th row
     opcode_table[0 + 112] = commands{ .cycles = 2, .lenght = 1, .operation = "LD (HL),B" };
     opcode_table[1 + 112] = commands{ .cycles = 2, .lenght = 1, .operation = "LD (HL),C" };
     opcode_table[2 + 112] = commands{ .cycles = 2, .lenght = 1, .operation = "LD (HL),D" };
@@ -146,7 +147,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 112] = commands{ .cycles = 1, .lenght = 1, .operation = "LD A,L" };
     opcode_table[14 + 112] = commands{ .cycles = 2, .lenght = 1, .operation = "LD A,(HL)" };
     opcode_table[15 + 112] = commands{ .cycles = 1, .lenght = 1, .operation = "LD A,A" };
-    //eight row
+    //8th row
     opcode_table[0 + 128] = commands{ .cycles = 1, .lenght = 1, .operation = "ADD A,B" };
     opcode_table[1 + 128] = commands{ .cycles = 1, .lenght = 1, .operation = "ADD A,C" };
     opcode_table[2 + 128] = commands{ .cycles = 1, .lenght = 1, .operation = "ADD A,D" };
@@ -163,7 +164,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 128] = commands{ .cycles = 1, .lenght = 1, .operation = "ADC A,L" };
     opcode_table[14 + 128] = commands{ .cycles = 2, .lenght = 1, .operation = "ADC A,(HL)" };
     opcode_table[15 + 128] = commands{ .cycles = 1, .lenght = 1, .operation = "ADC A,A" };
-    //nineth row
+    //9th row
     opcode_table[0 + 144] = commands{ .cycles = 1, .lenght = 1, .operation = "SUB A,B" };
     opcode_table[1 + 144] = commands{ .cycles = 1, .lenght = 1, .operation = "SUB A,C" };
     opcode_table[2 + 144] = commands{ .cycles = 1, .lenght = 1, .operation = "SUB A,D" };
@@ -180,7 +181,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 144] = commands{ .cycles = 1, .lenght = 1, .operation = "SBC A,L" };
     opcode_table[14 + 144] = commands{ .cycles = 2, .lenght = 1, .operation = "SBC A,(HL)" };
     opcode_table[15 + 144] = commands{ .cycles = 1, .lenght = 1, .operation = "SBC A,A" };
-    //tenth row
+    //10th row
     opcode_table[0 + 160] = commands{ .cycles = 1, .lenght = 1, .operation = "AND A,B" };
     opcode_table[1 + 160] = commands{ .cycles = 1, .lenght = 1, .operation = "AND A,C" };
     opcode_table[2 + 160] = commands{ .cycles = 1, .lenght = 1, .operation = "AND A,D" };
@@ -197,7 +198,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 160] = commands{ .cycles = 1, .lenght = 1, .operation = "XOR A,L" };
     opcode_table[14 + 160] = commands{ .cycles = 2, .lenght = 1, .operation = "XOR A,(HL)" };
     opcode_table[15 + 160] = commands{ .cycles = 1, .lenght = 1, .operation = "XOR A,A" };
-    //eleventh row
+    //11th row
     opcode_table[0 + 176] = commands{ .cycles = 1, .lenght = 1, .operation = "OR A,B" };
     opcode_table[1 + 176] = commands{ .cycles = 1, .lenght = 1, .operation = "OR A,C" };
     opcode_table[2 + 176] = commands{ .cycles = 1, .lenght = 1, .operation = "OR A,D" };
@@ -214,7 +215,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 176] = commands{ .cycles = 1, .lenght = 1, .operation = "CP A,L" };
     opcode_table[14 + 176] = commands{ .cycles = 2, .lenght = 1, .operation = "CP A,(HL)" };
     opcode_table[15 + 176] = commands{ .cycles = 1, .lenght = 1, .operation = "CP A,A" };
-    //thwelth row
+    //12th row
     opcode_table[0 + 192] = commands{ .cycles = 2, .lenght = 1, .operation = "RET NZ" };
     opcode_table[1 + 192] = commands{ .cycles = 3, .lenght = 1, .operation = "POP BC" };
     opcode_table[2 + 192] = commands{ .cycles = 3, .lenght = 3, .operation = "JP NZ,u16" };
@@ -231,7 +232,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 192] = commands{ .cycles = 6, .lenght = 3, .operation = "CALL u16" };
     opcode_table[14 + 192] = commands{ .cycles = 2, .lenght = 2, .operation = "ADC A,u8" };
     opcode_table[15 + 192] = commands{ .cycles = 4, .lenght = 1, .operation = "RST 00h" };
-    //thirdteenth row
+    //13th row
     opcode_table[0 + 208] = commands{ .cycles = 2, .lenght = 1, .operation = "RET NC" };
     opcode_table[1 + 208] = commands{ .cycles = 3, .lenght = 1, .operation = "POP DE" };
     opcode_table[2 + 208] = commands{ .cycles = 3, .lenght = 3, .operation = "JP NC,u16" };
@@ -248,7 +249,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 208] = commands{ .cycles = 0, .lenght = 0, .operation = "" };
     opcode_table[14 + 208] = commands{ .cycles = 2, .lenght = 2, .operation = "SBC A,u8" };
     opcode_table[15 + 208] = commands{ .cycles = 4, .lenght = 1, .operation = "RST 08h" };
-    //fourthteenth row
+    //14th row
     opcode_table[0 + 224] = commands{ .cycles = 3, .lenght = 2, .operation = "LD (FF00+u8),A" };
     opcode_table[1 + 224] = commands{ .cycles = 3, .lenght = 1, .operation = "POP HL" };
     opcode_table[2 + 224] = commands{ .cycles = 2, .lenght = 1, .operation = "LD (FF00+C),A" };
@@ -265,7 +266,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 224] = commands{ .cycles = 0, .lenght = 0, .operation = "" };
     opcode_table[14 + 224] = commands{ .cycles = 2, .lenght = 2, .operation = "XOR A,u8" };
     opcode_table[15 + 224] = commands{ .cycles = 4, .lenght = 1, .operation = "RST 28h" };
-    //fiveteenth row
+    //15th row
     opcode_table[0 + 240] = commands{ .cycles = 3, .lenght = 2, .operation = "LD A,(FF00+u8)" };
     opcode_table[1 + 240] = commands{ .cycles = 3, .lenght = 1, .operation = "POP AF" };
     opcode_table[2 + 240] = commands{ .cycles = 2, .lenght = 1, .operation = "LD A,(FF00+C)" };
@@ -282,7 +283,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 240] = commands{ .cycles = 0, .lenght = 0, .operation = "" };
     opcode_table[14 + 240] = commands{ .cycles = 2, .lenght = 2, .operation = "CP A,u8" };
     opcode_table[15 + 240] = commands{ .cycles = 4, .lenght = 1, .operation = "RST 38h" };
-    //zeroth row of second table
+    //0th row of 1st table
     opcode_table[0 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC B" };
     opcode_table[1 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC C" };
     opcode_table[2 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RLC D" };
@@ -299,7 +300,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RRC L" };
     opcode_table[14 + 0 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RRC (HL)" };
     opcode_table[15 + 0 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RRC A" };
-    //first row
+    //1st row
     opcode_table[0 + 16 + 255] = commands{ .cycles = 2, .lenght = 2, .operation = "RL B" };
     opcode_table[1 + 16 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RL C" };
     opcode_table[2 + 16 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RL D" };
@@ -316,7 +317,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 16 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RR L" };
     opcode_table[14 + 16 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RR (HL)" };
     opcode_table[15 + 16 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RR A" };
-    //second row
+    //2nd row
     opcode_table[0 + 32 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SLA B" };
     opcode_table[1 + 32 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SLA C" };
     opcode_table[2 + 32 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SLA D" };
@@ -333,7 +334,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 32 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SRA L" };
     opcode_table[14 + 32 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SRA (HL)" };
     opcode_table[15 + 32 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SRA A" };
-    //third row
+    //3rd row
     opcode_table[0 + 48 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SWAP B" };
     opcode_table[1 + 48 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SWAP C" };
     opcode_table[2 + 48 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SWAP D" };
@@ -350,7 +351,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 48 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SRL L" };
     opcode_table[14 + 48 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SRL (HL)" };
     opcode_table[15 + 48 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SRL A" };
-    //fourth row
+    //4th row
     opcode_table[0 + 64 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 0,B" };
     opcode_table[1 + 64 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 0,C" };
     opcode_table[2 + 64 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 0,D" };
@@ -367,7 +368,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 64 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 1,L" };
     opcode_table[14 + 64 + 256] = commands{ .cycles = 3, .lenght = 2, .operation = "BIT 1,(HL)" };
     opcode_table[15 + 64 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 1,A" };
-    //fifthed row
+    //5th row
     opcode_table[0 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,B" };
     opcode_table[1 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,C" };
     opcode_table[2 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 2,D" };
@@ -384,7 +385,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 3,L" };
     opcode_table[14 + 80 + 256] = commands{ .cycles = 3, .lenght = 2, .operation = "BIT 3,(HL)" };
     opcode_table[15 + 80 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 3,A" };
-    //sixth row
+    //6th row
     opcode_table[0 + 96 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 4,B" };
     opcode_table[1 + 96 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 4,C" };
     opcode_table[2 + 96 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 4,D" };
@@ -401,7 +402,7 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 96 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 5,L" };
     opcode_table[14 + 96 + 256] = commands{ .cycles = 3, .lenght = 2, .operation = "BIT 5,(HL)" };
     opcode_table[15 + 96 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 5,A" };
-    //seventh row
+    //7th row
     opcode_table[0 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 6,B" };
     opcode_table[1 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 6,C" };
     opcode_table[2 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 6,D" };
@@ -418,7 +419,142 @@ pub fn opcodes_to_table() !void() {
     opcode_table[13 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 7,L" };
     opcode_table[14 + 112 + 256] = commands{ .cycles = 3, .lenght = 2, .operation = "BIT 7,(HL)" };
     opcode_table[15 + 112 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "BIT 7,A" };
-    //eight row
+    //8th row
+    opcode_table[0 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 0,B" };
+    opcode_table[1 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 0,C" };
+    opcode_table[2 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 0,D" };
+    opcode_table[3 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 0,E" };
+    opcode_table[4 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 0,H" };
+    opcode_table[5 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 0,L" };
+    opcode_table[6 + 128 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RES 0,(HL)" };
+    opcode_table[7 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 0,A" };
+    opcode_table[8 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 1,B" };
+    opcode_table[9 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 1,C" };
+    opcode_table[10 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 1,D" };
+    opcode_table[11 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 1,E" };
+    opcode_table[12 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 1,H" };
+    opcode_table[13 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 1,L" };
+    opcode_table[14 + 128 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RES 1,(HL)" };
+    opcode_table[15 + 128 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 1,A" };
+    //9th row
+    opcode_table[0 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 2,B" };
+    opcode_table[1 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 2,C" };
+    opcode_table[2 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 2,D" };
+    opcode_table[3 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 2,E" };
+    opcode_table[4 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 2,H" };
+    opcode_table[5 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 2,L" };
+    opcode_table[6 + 144 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RES 2,(HL)" };
+    opcode_table[7 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 2,A" };
+    opcode_table[8 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 3,B" };
+    opcode_table[9 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 3,C" };
+    opcode_table[10 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 3,D" };
+    opcode_table[11 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 3,E" };
+    opcode_table[12 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 3,H" };
+    opcode_table[13 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 3,L" };
+    opcode_table[14 + 144 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RES 3,(HL)" };
+    opcode_table[15 + 144 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 3,A" };
+    //10th row
+    opcode_table[0 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 4,B" };
+    opcode_table[1 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 4,C" };
+    opcode_table[2 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 4,D" };
+    opcode_table[3 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 4,E" };
+    opcode_table[4 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 4,H" };
+    opcode_table[5 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 4,L" };
+    opcode_table[6 + 160 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RES 4,(HL)" };
+    opcode_table[7 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 4,A" };
+    opcode_table[8 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 5,B" };
+    opcode_table[9 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 5,C" };
+    opcode_table[10 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 5,D" };
+    opcode_table[11 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 5,E" };
+    opcode_table[12 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 5,H" };
+    opcode_table[13 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 5,L" };
+    opcode_table[14 + 160 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RES 5,(HL)" };
+    opcode_table[15 + 160 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 5,A" };
+    //11th row
+    opcode_table[0 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 6,B" };
+    opcode_table[1 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 6,C" };
+    opcode_table[2 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 6,D" };
+    opcode_table[3 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 6,E" };
+    opcode_table[4 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 6,H" };
+    opcode_table[5 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 6,L" };
+    opcode_table[6 + 176 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RES 6,(HL)" };
+    opcode_table[7 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 6,A" };
+    opcode_table[8 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 7,B" };
+    opcode_table[9 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 7,C" };
+    opcode_table[10 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 7,D" };
+    opcode_table[11 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 7,E" };
+    opcode_table[12 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 7,H" };
+    opcode_table[13 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 7,L" };
+    opcode_table[14 + 176 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "RES 7,(HL)" };
+    opcode_table[15 + 176 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "RES 7,A" };
+    //12th row
+    opcode_table[0 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 0,B" };
+    opcode_table[1 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 0,C" };
+    opcode_table[2 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 0,D" };
+    opcode_table[3 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 0,E" };
+    opcode_table[4 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 0,H" };
+    opcode_table[5 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 0,L" };
+    opcode_table[6 + 192 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SET 0,(HL)" };
+    opcode_table[7 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 0,A" };
+    opcode_table[8 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 1,B" };
+    opcode_table[9 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 1,C" };
+    opcode_table[10 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 1,D" };
+    opcode_table[11 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 1,E" };
+    opcode_table[12 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 1,H" };
+    opcode_table[13 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 1,L" };
+    opcode_table[14 + 192 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SET 1,(HL)" };
+    opcode_table[15 + 192 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 1,A" };
+    //13th row
+    opcode_table[0 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 2,B" };
+    opcode_table[1 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 2,C" };
+    opcode_table[2 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 2,D" };
+    opcode_table[3 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 2,E" };
+    opcode_table[4 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 2,H" };
+    opcode_table[5 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 2,L" };
+    opcode_table[6 + 208 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SET 2,(HL)" };
+    opcode_table[7 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 2,A" };
+    opcode_table[8 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 3,B" };
+    opcode_table[9 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 3,C" };
+    opcode_table[10 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 3,D" };
+    opcode_table[11 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 3,E" };
+    opcode_table[12 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 3,H" };
+    opcode_table[13 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 3,L" };
+    opcode_table[14 + 208 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SET 3,(HL)" };
+    opcode_table[15 + 208 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 3,A" };
+    //14th row
+    opcode_table[0 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 4,B" };
+    opcode_table[1 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 4,C" };
+    opcode_table[2 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 4,D" };
+    opcode_table[3 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 4,E" };
+    opcode_table[4 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 4,H" };
+    opcode_table[5 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 4,L" };
+    opcode_table[6 + 224 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SET 4,(HL)" };
+    opcode_table[7 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 4,A" };
+    opcode_table[8 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 5,B" };
+    opcode_table[9 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 5,C" };
+    opcode_table[10 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 5,D" };
+    opcode_table[11 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 5,E" };
+    opcode_table[12 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 5,H" };
+    opcode_table[13 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 5,L" };
+    opcode_table[14 + 224 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SET 5,(HL)" };
+    opcode_table[15 + 224 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 5,A" };
+    //15th row
+    opcode_table[0 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 6,B" };
+    opcode_table[1 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 6,C" };
+    opcode_table[2 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 6,D" };
+    opcode_table[3 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 6,E" };
+    opcode_table[4 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 6,H" };
+    opcode_table[5 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 6,L" };
+    opcode_table[6 + 240 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SET 6,(HL)" };
+    opcode_table[7 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 6,A" };
+    opcode_table[8 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 7,B" };
+    opcode_table[9 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 7,C" };
+    opcode_table[10 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 7,D" };
+    opcode_table[11 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 7,E" };
+    opcode_table[12 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 7,H" };
+    opcode_table[13 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 7,L" };
+    opcode_table[14 + 240 + 256] = commands{ .cycles = 4, .lenght = 2, .operation = "SET 7,(HL)" };
+    opcode_table[15 + 240 + 256] = commands{ .cycles = 2, .lenght = 2, .operation = "SET 7,A" };
 }
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
