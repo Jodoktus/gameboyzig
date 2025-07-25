@@ -1,5 +1,5 @@
 const std = @import("std");
-
+const math = std.math;
 const U3 = std.meta.Int(.unsigned, 3); //so i can test what bit it is same lenght as mask
 
 const U1 = std.meta.Int(.unsigned, 1); //bits
@@ -603,5 +603,11 @@ pub fn main() !void {
     defer list.deinit(); // to get rit of the bits of tertis.gb
     // dont really know if i have to place it here or right after the list
 }
-
+pub fn bin_into_int(x: [8]U1) u8 {
+    var a: u8 = 0;
+    for (x, 0..) |j, i| {
+        a += @as(u8, j) * math.pow(u8, 2, i);
+    }
+    return a;
+}
 //Todo turn the bits into asm code with the op codes of the gameboy
